@@ -61,8 +61,8 @@ to train and eval the model,
 ```bash
 python train.py -tr -wp 128 -epochs 16 -temp 0.05 -tsk meld|iemocap|emorynlp -psz 256 -ssz 64 -train_obj spcl|spdcl|ce -cl -seed 2333
 
-python train.py -tr -wp 128 -epochs 16 -temp 0.05 -tsk meld -psz 256 -ssz 64 -train_obj spcl|spdcl|ce -cl -seed 2333
-python train.py -tr -wp 128 -epochs 16 -temp 0.05 -tsk iemocap -psz 256 -ssz 64 -train_obj spcl|spdcl|ce -cl -seed 2333
+python train.py -tr -wp 128 -epochs 16 -temp 0.05 -tsk meld -psz 256 -ssz 64 -train_obj spcl -cl -seed 2333
+python train.py -tr -wp 128 -epochs 16 -temp 0.05 -tsk iemocap -psz 256 -ssz 64 -train_obj spcl -cl -seed 2333
 python train.py -tr -wp 128 -epochs 16 -temp 0.05 -tsk emorynlp -psz 256 -ssz 64 -train_obj spcl|spdcl|ce -cl -seed 2333
 ```
 e.g., to train the model on the meld dataset via spcl,
