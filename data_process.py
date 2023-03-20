@@ -101,7 +101,7 @@ def get_iemocap_vocabs(file_paths):
     emotion_vocab = vocab.Vocab()
     emotion_vocab.word2index('neu', train=True)
     for file_path in file_paths:
-        data = json.load(open(file_path, 'r'), encoding='utf8')
+        data = json.load(open(file_path, 'r', encoding='utf8'))
         for dialog in tqdm(data,
                            desc='get vocab from {}'.format(file_path),
                            disable=CONFIG['local_rank'] not in [-1, 0]):
@@ -116,7 +116,7 @@ def get_iemocap_vocabs(file_paths):
 
 def load_emorynlp_turn(file_path):
     emotion_vocab = vocab.Vocab.from_dict(torch.load(CONFIG['emotion_vocab']))
-    data = json.load(open(file_path, 'r'), encoding='utf8')
+    data = json.load(open(file_path, 'r', encoding='utf8'))
     dialogues = []
     speaker_vocab = vocab.Vocab()
     for episode in tqdm(data['episodes'],
@@ -181,7 +181,7 @@ def load_meld_turn(file_path):
 
 def load_iemocap_turn(file_path):
     emotion_vocab = vocab.Vocab.from_dict(torch.load(CONFIG['emotion_vocab']))
-    data = json.load(open(file_path, 'r'), encoding='utf8')
+    data = json.load(open(file_path, 'r', encoding='utf8'))
 
     speaker_pools = json.load(open('./IEMOCAP/name_pool', 'r'))
     dialogues = []
