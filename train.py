@@ -5,6 +5,7 @@ from model import CLModel, FGM
 from data_process import *
 from util_methods import *
 from spcl_loss import SupProtoConLoss
+from lumo import SimpleExperiment
 
 def get_paramsgroup(model, warmup=False):
     no_decay = ['bias', 'LayerNorm.weight']
@@ -509,6 +510,9 @@ if __name__ == '__main__':
                         default='cuda:0',
                         help='Device used for inference')
     args = parser.parse_args()
+
+    exp = SimpleExperiment('spcl')
+    exp.start()
     
     if args.local_rank == -1:
         device = torch.device("cuda" if torch.cuda.is_available()
@@ -544,10 +548,10 @@ if __name__ == '__main__':
     
     if CONFIG['temp_path'] == '':
         if args.local_rank in [-1]:
-            os.makedirs('/test/diyi/temp', exist_ok=True)
-            temp_path = tempfile.mkdtemp(dir='/test/diyi/temp')
+            # os.makedirs('/test/diyi/temp', exist_ok=True)
+            temp_path = exp.mk_cpath()
         else:
-            temp_path = '/test/diyi/temp'
+            temp_path = exp.mk_cpath()
         CONFIG['temp_path'] = temp_path
     CONFIG['emotion_vocab'] = CONFIG['temp_path'] + '/vocabs/emotion_vocab.pkl'
 
